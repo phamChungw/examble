@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>examble1</title>
+</head>
+
+<body>
+  <script>
+    //Nhap thong tin % Sinh Vien
+    alert("Nhap thong Tin 5 SV");
+    let listStudent = [];
+    let itemStudent = studentInfo();
+    listStudent.push(itemStudent);
+    itemStudent = studentInfo();
+    listStudent.push(itemStudent);
+    itemStudent = studentInfo();
+    listStudent.push(itemStudent);
+    itemStudent = studentInfo();
+    listStudent.push(itemStudent);
+    itemStudent = studentInfo();
+    listStudent.push(itemStudent);
+    console.log("Danh sach sinh vien vua nhap");
+    console.log(listStudent);
+
+    //Sap xep theo diem TB
+    for (let i = 0;i < listStudent.length - 1;i++) {
+      for (let j = i + 1;j < listStudent.length;j++) {
+        if (listStudent[i].avgMark > listStudent[j].avgMark) {
+          itemStudent = listStudent[i];
+          listStudent[i] = listStudent[j];
+          listStudent[j] = itemStudent;
+        }
+      }
+    }
+    console.log("danh sach sinh vien da sap sep");
+    console.log(listStudent);
+
+    //Tim Sinh Vien Theo ho ten
+    let flag = false;
+    let findNameSrudent = prompt("Nhap Ten Sinh vien muon tim:");
+    console.log("Ten SV muon tim: " + findNameSrudent);
+    for (const item of listStudent) {
+      if (item.nameStudent.includes(findNameSrudent)) {
+        console.log(item);
+        flag = true;
+      }
+    }
+    if (flag = false) {
+      console.log("Khong tim thay ten Sinh Vien");
+    }
+
+    // Nhap thong tin sinh vien
+    function studentInfo() {
+      let idStudent, nameStudent, age, mark_html, mark_css, mark_js, avgMark, rank;
+      //nhap Id
+      idStudent = prompt("Nhap ID student:");
+      while (idStudent.length != 5 && idStudent.startsWith != 'S') {
+        idStudent = prompt("Nhap lai ID student:");
+      }
+
+      //Nhap Name
+      nameStudent = prompt("Nhap Name student:");
+      while (nameStudent.length < 6 && nameStudent.length > 30) {
+        nameStudent = prompt("Nhap lai name student:");
+      }
+
+      //nhap tuoi
+      age = +prompt("Nhap tuoi:");
+      console.log(age);
+      while (age < 18 && age > 30) {
+        age = +prompt("Nhap lai tuoi:");
+      }
+
+      //Nhap diem
+      mark_html = parseFloat(prompt("Diem HTML:"));
+      while (mark_html < 0 && mark_html > 10) {
+        mark_html = parseFloat(prompt(" Nhap lai Diem HTML:"));
+      }
+      mark_css = parseFloat(prompt("Diem CSS:"));
+      while (mark_css < 0 && mark_css > 10) {
+        mark_css = parseFloat(prompt(" Nhap lai Diem CSS:"));
+      }
+      mark_js = parseFloat(prompt("Diem JS:"));
+      while (mark_js < 0 && mark_js > 10) {
+        mark_js = parseFloat(prompt(" Nhap lai Diem JS:"));
+      }
+
+      //Diem TB
+      avgMark = (mark_css + mark_html + mark_js) / 3;
+
+      //Xep Loai
+      if (avgMark < 5) {
+        rank = 'Yeu';
+      } else if (avgMark < 7) {
+        rank = "Trung binh";
+      } else if (avgMark < 8) {
+        rank = 'Kha ';
+      } else if (avgMark < 9) {
+        rank = 'Gioi';
+      } else {
+        rank = 'Suat Sac';
+      }
+      let stu = [idStudent, nameStudent, age, mark_html, mark_css, mark_js, avgMark, rank];
+      return stu;
+    }
+  </script>
+</body>
+
+</html>
